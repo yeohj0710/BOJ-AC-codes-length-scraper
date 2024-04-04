@@ -68,7 +68,10 @@ So we built this scraper to allow you to search for problems by adding these cri
 
 ### Features of the program
 
-This scraper adds each question to a CSV file as soon as it is scraped, so even if the program crashes in the middle of a scrape, the data from questions retrieved before the crash will all be saved in the CSV file.
+- This scraper adds each question to a CSV file as soon as it is scraped, so even if the program crashes in the middle of a scrape, the data from questions retrieved before the crash will all be saved in the CSV file.
+- Before the program adds data to the CSV file, questions that are excluded from new search results are automatically deleted from the CSV file.
+- Valid problem data already in the CSV file will not be deleted, only the new data will be added to the CSV file.
+- Only the retrieved problem data that does not already exist in the CSV file will be added to the CSV file in a randomized order, so you can avoid having certain problem IDs being added to the CSV file in droves.
 
 <br>
 <br>
