@@ -17,7 +17,7 @@ language_cpp = True
 DELAY_PER_PAGE = 10
 FILE_NAME = "검색_결과_데이터.csv"
 EARLY_TERMINATION_FLAG = True
-PAGES_TO_SCRAPE_PER_RUN = 10
+PAGES_TO_SCRAPE_PER_RUN = 1000
 
 excluded_problem_ids = []
 
