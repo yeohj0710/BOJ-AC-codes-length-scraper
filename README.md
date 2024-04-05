@@ -39,6 +39,7 @@ So we built this scraper to allow you to search for problems by adding these cri
    <b>min_average_try</b>: The lower bound for the average number of attempts by people who solved the problem.<br>
    <b>max_average_try</b>: The upper bound for the average number of attempts by people who solved the problem.<br>
    <b>language_cpp</b>: If set to True, only solutions from people who solved in C++ will be counted.<br>
+   <b>EARLY_TERMINATION_FLAG</b>, <b>PAGES_TO_SCRAPE_PER_RUN</b>: If you set the value of EARLY_TERMINATION_FLAG to True, you can further set the value of PAGES_TO_SCRAPE_PER_RUN to prevent too many scrapes from happening by terminating the program early if the number of scrapes reaches PAGES_TO_SCRAPE_PER_RUN.<br>
 
 <br>
 
