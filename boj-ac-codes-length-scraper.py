@@ -7,7 +7,7 @@ import csv
 
 user_id = "baekjoon"
 min_difficulty = "b3"
-max_difficulty = "s3"
+max_difficulty = "g4"
 min_solvers_count = 50000
 max_solvers_count = 1000000
 min_average_try = 1
@@ -16,6 +16,8 @@ language_cpp = True
 
 DELAY_PER_PAGE = 10
 FILE_NAME = "검색_결과_데이터.csv"
+EARLY_TERMINATION_FLAG = True
+PAGES_TO_SCRAPE_PER_RUN = 10
 
 excluded_problem_ids = []
 
@@ -234,7 +236,13 @@ def get_problems_boj_info_and_write_csv_file(problems_info):
         f"이미 저장된 문제들을 제외한 {len(problems_info)}개의 문제를 검색 결과 데이터 파일에 추가합니다."
     )
 
-    i = 0
+    scraped_page_count = 0
+    existing_data_count = 0
+
+    with open(FILE_NAME, "r", newline="", encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+        rows_list = list(reader)
+        existing_data_count += len(rows_list)
 
     for problem_id, problem_info in problems_info.items():
         problem_exists = False
@@ -247,7 +255,7 @@ def get_problems_boj_info_and_write_csv_file(problems_info):
                     break
 
         if problem_exists:
-            i += 1
+            scraped_page_count += 1
             continue
 
         problem_url = f"https://acmicpc.net/problem/{problem_id}"
@@ -267,10 +275,12 @@ def get_problems_boj_info_and_write_csv_file(problems_info):
         )
 
         if problem_info["avg_solution_length"] == float("inf"):
-            i += 1
+            scraped_page_count += 1
             continue
 
-        print(f"boj.kr 문제 페이지 스크랩 중... ({i + 1}/{len(problems_info)})")
+        print(
+            f"boj.kr 문제 페이지 스크랩 중... ({existing_data_count + scraped_page_count + 1}/{existing_data_count + len(problems_info)})"
+        )
         time.sleep(DELAY_PER_PAGE)
 
         with open(FILE_NAME, "a", newline="", encoding="utf-8") as csvfile:
@@ -296,25 +306,20 @@ def get_problems_boj_info_and_write_csv_file(problems_info):
                 }
             )
 
-        i += 1
+        scraped_page_count += 1
+
+        if (
+            EARLY_TERMINATION_FLAG == True
+            and scraped_page_count >= PAGES_TO_SCRAPE_PER_RUN
+        ):
+            print(
+                f"프로그램 실행 1회당 스크랩 횟수 {PAGES_TO_SCRAPE_PER_RUN}회에 도달하여 프로그램을 조기 종료합니다."
+            )
+            return
 
     print("검색된 모든 문제에 대해 데이터가 성공적으로 생성되었습니다.")
 
     return
-
-
-"""
-def sort_csv_file():
-    with open(FILE_NAME, "r", newline="", encoding="utf-8") as csvfile:
-        reader = csv.DictReader(csvfile)
-        sorted_rows = sorted(reader, key=lambda row: int(row["정답 코드의 평균 길이"]))
-
-    with open(FILE_NAME, "w", newline="", encoding="utf-8") as csvfile:
-        fieldnames = sorted_rows[0].keys()
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(sorted_rows)
-"""
 
 
 solved_ac_url = f"https://solved.ac/search?query=%21%40{user_id}+*{min_difficulty}..{max_difficulty}+s%23{min_solvers_count}..{max_solvers_count}+t%23{min_average_try}..{max_average_try}"
