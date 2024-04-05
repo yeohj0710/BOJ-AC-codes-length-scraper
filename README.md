@@ -14,9 +14,9 @@ A scraper to calculate the length of each 'problem description' and the 'average
 
 ### Purpose of the program
 
-How can I find easy questions on the BOJ?<br>
-If you can sort questions by the average length of the answer codes or the length of the problem description, you can quickly find easy questions.<br>
-BOJ and solved.ac have a variety of sorting criteria for questions, but you can't sort by "average length of answer codes" or "length of problem description".<br>
+How can I find easy problems on the BOJ?<br>
+If you can sort problems by the average length of the answer codes or the length of the problem description, you can quickly find easy problems.<br>
+BOJ and solved.ac have a variety of sorting criteria for problems, but you can't sort by "average length of answer codes" or "length of problem description".<br>
 So we built this scraper to allow you to search for problems by adding these criteria.<br>
 
 <br>
@@ -56,7 +56,7 @@ So we built this scraper to allow you to search for problems by adding these cri
 
 <br>
 
-4. The questions are saved in the '검색_결과_데이터.csv' file, which you can sort by each column to see the questions that were found.<br>
+4. The problems are saved in the '검색_결과_데이터.csv' file, which you can sort by each column to see the problems that were found.<br>
 
 <div align="center">
 
@@ -68,10 +68,11 @@ So we built this scraper to allow you to search for problems by adding these cri
 
 ### Features of the program
 
-- This scraper adds each question to a CSV file as soon as it is scraped, so even if the program crashes in the middle of a scrape, the data from questions retrieved before the crash will all be saved in the CSV file.
-- Before the program adds data to the CSV file, questions that are excluded from new search results are automatically deleted from the CSV file.
+- This scraper adds each problem to a CSV file as soon as it is scraped, so even if the program crashes in the middle of a scrape, the data from problems retrieved before the crash will all be saved in the CSV file.
+- Before the program adds data to the CSV file, problems that are excluded from new search results are automatically deleted from the CSV file.
 - Valid problem data already in the CSV file will not be deleted, only the new data will be added to the CSV file.
 - Only the retrieved problem data that does not already exist in the CSV file will be added to the CSV file in a randomized order, so you can avoid having certain problem IDs being added to the CSV file in droves.
+- Newly solved problems are automatically removed from the new search results and CSV file.
 
 <br>
 <br>
