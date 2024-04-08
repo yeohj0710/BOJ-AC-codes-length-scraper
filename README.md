@@ -14,7 +14,7 @@ A scraper to calculate the length of each 'problem description' and the 'average
 
 ### Purpose of the program
 
-How can I find easy problems on the BOJ?<br>
+How can I find easy problems on the Baekjoon Online Judge?<br>
 If you can sort problems by the average length of the answer codes or the length of the problem description, you can quickly find easy problems.<br>
 BOJ and solved.ac have a variety of sorting criteria for problems, but you can't sort by "average length of answer codes" or "length of problem description".<br>
 So we built this scraper to allow you to search for problems by adding these criteria.<br>
@@ -43,7 +43,7 @@ So we built this scraper to allow you to search for problems by adding these cri
 
 <br>
 
-2. If there are any other issues you want to exclude from the search, add them to the 'excluded-problems-list', one per line.<br>
+2. If there are any other problems you want to exclude from the search, add them to the 'excluded-problems-list', one per line.<br>
 
 <div align="center">
 
@@ -57,7 +57,7 @@ So we built this scraper to allow you to search for problems by adding these cri
 
 <br>
 
-4. The problems are saved in the '검색_결과_데이터.csv' file, which you can sort by each column to see the problems that were found.<br>
+4. All data of the problems are saved in the '검색_결과_데이터.csv' file, which you can sort by each column to see the problems that were found.<br>
 
 <div align="center">
 
